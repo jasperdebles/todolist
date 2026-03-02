@@ -1,23 +1,34 @@
 <!DOCTYPE html>
-<html><head><title>Todo App</title></head><body>
-<h1>Todo List</h1>
-<form method="POST">
-    Title: <input name="title" required>
-    Desc: <input name="description">
-    Due: <input name="due_date" type="date">
-    <button>Add Todo</button>
-</form>
-{% for todo in todos %}
-<div>
-    {{ todo.title }} - {{ todo.description or '' }} 
-    (Due: {{ todo.due_date or 'No date' }})
-    {% if not todo.completed %}
-        <a href="/complete/{{ todo.id }}">Complete</a>
-    {% else %}
-        ✅ Completed
-    {% endif %}
-</div>
-{% endfor %}
-</body></html>
+<html>
+<head>
+    <title>Todo App</title>
+    <!-- CSS link! -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>🧗‍♂️ Todo</h1>
+    <form method="POST">
+        Title: <input name="title" required>
+        Description: <input name="description">
+        Due: <input name="due_date" type="date">
+        <button>Add Todo</button>
+    </form>
+    
+    {% for todo in todos %}
+    <div class="todo-item {% if todo.completed %}completed{% endif %}">
+        <div>
+            <h3>{{ todo.title }}</h3>
+            <p>{{ todo.description or '' }} {% if todo.due_date %}(Due: {{ todo.due_date }}){% endif %}</p>
+        </div>
+        {% if not todo.completed %}
+        <a href="/complete/{{ todo.id }}" class="complete-btn">✅ Complete</a>
+        {% else %}
+        <span>✅ Done!</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+</body>
+</html>
+
 
 
