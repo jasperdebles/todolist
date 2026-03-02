@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head><title>Todo App</title></head>
+<body>
+<h1>Todo List</h1>
+<form method="POST">
+    Title: <input name="title">
+    Desc: <input name="description">
+    Due: <input name="due_date" type="date">
+    <button>Add</button>
+</form>
+{% for todo in todos %}
+<div>
+    {{ todo.title }} - {{ todo.description }} ({{ todo.due_date }})
+    {% if not todo.completed %}<a href="/complete/{{ loop.index0 }}">Complete</a>{% endif %}
+</div>
+{% endfor %}
+</body>
+</html>
+
