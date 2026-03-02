@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Flask Todo",
+            "type": "shell",
+            "command": "flask",
+            "args": ["run", "--reload"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": [],
+            "env": {
+                "FLASK_APP": "app.py",
+                "FLASK_ENV": "development"
+            }
+        }
+    ]
+}
